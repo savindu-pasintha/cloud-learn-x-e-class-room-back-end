@@ -17,6 +17,10 @@ const io = require("socket.io")(server, {
 		methods: [ "GET", "POST" ]
 	}
 */
+app.get('/',(req,resp)=>{
+  resp.send("Back end is working savindu ..");
+});
+
 io.on("connection", (socket) => {
 
 	socket.emit("me", socket.id);
@@ -43,4 +47,4 @@ io.on("connection", (socket) => {
 
 //acces  the eve file insite PORT or 5000
 var PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log("server is running on port 5000"))
+server.listen(5000, () => console.log("server is running on port 5000"))
