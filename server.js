@@ -41,5 +41,6 @@ io.on("connection", (socket) => {
   });
 })
 
-
-server.listen(5000, () => console.log("server is running on port 5000"))
+//acces  the eve file insite PORT or 5000
+var PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log("server is running on port 5000"))
