@@ -12,6 +12,7 @@ app.use(cors);
 //fix socke.io origin erro all arigins -- > origin:"*"
 var url = "http://naveendevinda.netlify.app" || "http://localhost:3000" || "*";
 
+/*
 const io = require("socket.io")(server, {
 	cors: {
 		origin: url,
@@ -20,6 +21,8 @@ const io = require("socket.io")(server, {
 		credentials: true
 	  }
 });
+
+*/
 /*
 	cors: {
 		origin: "http://localhost:3000",
@@ -27,10 +30,10 @@ const io = require("socket.io")(server, {
 		methods: [ "GET", "POST" ]
 	}
 */
-var dataCtached = "";
+
 app.get('/',(frontenddata,resp)=>{
 	console.log(frontenddata.body); // catch the front end send data
-	resp.send("Back end is working savindu .." +  dataCtached );
+	resp.send("Back end is working savindu ..");
   });
  
  app.post('/a',(request,response)=>{
