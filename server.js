@@ -5,21 +5,27 @@ const server = http.createServer(app);
 
 const io = require("socket.io")(server, {
 	cors: {
-		origin: "http://naveendevinda.netlify.app",
+		origin: "http://localhost:3000",
 		methods: [ "GET", "POST" ]
-	}
-
-	
+	}	
 });
 /*
 	cors: {
 		origin: "http://localhost:3000",
+		origin: "http://naveendevinda.netlify.app",
 		methods: [ "GET", "POST" ]
 	}
 */
-app.get('/',(req,resp)=>{
-  resp.send("Back end is working savindu ..");
-});
+var dataCtached = "";
+app.get('/',(frontenddata,resp)=>{
+	console.log(frontenddata.body); // catch the front end send data
+	resp.send("Back end is working savindu .." +  dataCtached );
+  });
+ 
+ app.post('/a',(request,response)=>{
+	 response.send({name:"savindu", age:"18"});
+	 console.log(request.body) // catch the front end send data
+ }); 
 
 io.on("connection", (socket) => {
 
@@ -41,9 +47,9 @@ io.on("connection", (socket) => {
 	//whiteboard shairing end point path
 	socket.on('canvas-data', (data)=> {
 		socket.broadcast.emit('canvas-data', data);
-		
   });
-})
+});
+
 
 //acces  the eve file insite PORT or 5000
 var PORT = process.env.PORT || 5000;
