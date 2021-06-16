@@ -38,6 +38,7 @@ app.get('/',(frontenddata,resp)=>{
 	 console.log(request.body) // catch the front end send data
  }); 
 
+ /*
 io.on("connection", (socket) => {
 
 	socket.emit("me", socket.id);
@@ -66,4 +67,5 @@ io.on("connection", (socket) => {
 
 });
 
+*/
 server.listen(PORT, () => console.log("server is running on port 5000"))
