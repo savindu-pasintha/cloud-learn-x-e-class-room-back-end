@@ -5,24 +5,23 @@ const app = express();
 const server = http.createServer(app);
 
 //acces  the eve file insite PORT or 5000
-var PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 //fix cors error
 app.use(cors);
 //fix socke.io origin erro all arigins -- > origin:"*"
-var url = "http://naveendevinda.netlify.app" || "http://localhost:3000" || "*";
+//var url = "http://naveendevinda.netlify.app" || "http://localhost:3000" || "*";
 
-/*
 const io = require("socket.io")(server, {
 	cors: {
-		origin: url,
+		origin: '*',
 		methods: ["GET", "POST"],
 		allowedHeaders: ["my-custom-header"],
 		credentials: true
 	  }
 });
 
-*/
+
 /*
 	cors: {
 		origin: "http://localhost:3000",
@@ -30,10 +29,10 @@ const io = require("socket.io")(server, {
 		methods: [ "GET", "POST" ]
 	}
 */
-
+var sk = "";
 app.get('/',(frontenddata,resp)=>{
 	console.log(frontenddata.body); // catch the front end send data
-	resp.send("Back end is working savindu ..");
+	resp.send("Back end is working savindu ..socket working-" + sk);
   });
  
  app.post('/a',(request,response)=>{
@@ -41,9 +40,9 @@ app.get('/',(frontenddata,resp)=>{
 	 console.log(request.body) // catch the front end send data
  }); 
 
- /*
+ 
 io.on("connection", (socket) => {
-
+     sk = "connected";
 	socket.emit("me", socket.id);
 	//emit used to send data
 
@@ -63,12 +62,12 @@ io.on("connection", (socket) => {
 		io.to(data.to).emit("callAccepted", data.signal);
 	});
 
-	//whiteboard shairing end point path
-	socket.on('canvas-data', (data)=> {
-		socket.broadcast.emit('canvas-data', data);
+	//whiteboard shairing end point path bradcast used to share with all
+	socket.on('canvas-data', (getDataFromClient) => {
+		socket.broadcast.emit('canvas-data',getDataFromClient);
      });
 
 });
 
-*/
+
 server.listen(PORT, () => console.log("server is running on port 5000"))
