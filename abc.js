@@ -1,14 +1,12 @@
 const express = require("express");
 const http = require("http");
-var cors = require('cors');
+
 const app = express();
 const server = http.createServer(app);
 
 //acces  the eve file insite PORT or 5000
 const PORT = process.env.PORT || 5000;
 
-//fix cors error
-app.use(cors);
 //fix socke.io origin erro all arigins -- > origin:"*"
 //var url = "http://naveendevinda.netlify.app" || "http://localhost:3000" || "*";
 
