@@ -5,10 +5,10 @@ const app = express();
 const server = http.createServer(app);
 
 const PORT = process.env.PORT || 5000;
-
+const originURL = "https://cloudlearnx.herokuapp.com" || "http://localhost:3000";
 const io = require("socket.io")(server, {
 	cors: {
-		origin: "http://localhost:3000",
+		origin:originURL,
 		methods: ["GET", "POST"],
 		allowedHeaders: ["my-custom-header"],
 		credentials: true
