@@ -14,7 +14,7 @@ const io = require("socket.io")(server, {
 		credentials: true
 	  }
 });
-
+var isWorkingSocket = "";
 io.on('connection', (socket) => {
 	console.log('Client connected'+socket.id);
 
@@ -38,6 +38,7 @@ io.on('connection', (socket) => {
 //1-click join session and execute  socket.emi("join_room","123456")
  socket.on("join_room",(room) => {
     socket.join(room);//ok
+	 isWorkingSocket = room;
 	console.log("joined room is -"+room);
 	socket.broadcast.emit("join_room",room);//sent all clent
 	// console.log("All Rooms Array - "+room);
@@ -92,8 +93,7 @@ socket.on('image', (msg)=>{
 
 
   app.get('/', (req, res) => {
-	res.send("./"+  req.body 
-	);
+	res.send("./"+"working server-room"+isWorkingSocket);
 	
   });
 
