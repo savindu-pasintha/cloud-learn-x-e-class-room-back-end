@@ -39,6 +39,10 @@ io.on('connection', (socket) => {
  socket.on("join_room",(room) => {
     socket.join(room);//ok
 	 isWorkingSocket = room;
+	 
+	 /*listen in timer.js Tutor jointime*/ 
+	socket.emit("session-start-time",time);
+	 
 	console.log("joined room is -"+room);
 	socket.broadcast.emit("join_room",room);//sent all clent
 	// console.log("All Rooms Array - "+room);
