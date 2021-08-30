@@ -40,7 +40,10 @@ io.on('connection', (socket) => {
     socket.join(room);//ok
 	 isWorkingSocket = room;
 	 
-	 /*listen in timer.js Tutor jointime*/ 
+	 /*listen in timer.js Tutor jointime*/  
+	var today = new Date();
+	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	console.log(time);
 	socket.emit("session-start-time",time);
 	 
 	console.log("joined room is -"+room);
